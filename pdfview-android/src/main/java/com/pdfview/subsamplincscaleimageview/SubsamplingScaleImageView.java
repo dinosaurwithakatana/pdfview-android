@@ -294,7 +294,7 @@ public class SubsamplingScaleImageView extends View {
         setMinimumTileDpi(320);
         setGestureDetector(context);
         this.handler = new Handler(new Handler.Callback() {
-            public boolean handleMessage(Message message) {
+            public boolean handleMessage(@NonNull Message message) {
                 if (message.what == MESSAGE_LONG_CLICK && onLongClickListener != null) {
                     maxTouchCount = 0;
                     SubsamplingScaleImageView.super.setOnLongClickListener(onLongClickListener);
@@ -553,7 +553,7 @@ public class SubsamplingScaleImageView extends View {
         this.detector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            public boolean onFling(MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
                 if (panEnabled && readySent && vTranslate != null && e1 != null && e2 != null && (Math.abs(e1.getX() - e2.getX()) > 50 || Math.abs(e1.getY() - e2.getY()) > 50) && (Math.abs(velocityX) > 500 || Math.abs(velocityY) > 500) && !isZooming) {
                     PointF vTranslateEnd = new PointF(vTranslate.x + (velocityX * 0.25f), vTranslate.y + (velocityY * 0.25f));
                     float sCenterXEnd = ((getWidth()/2) - vTranslateEnd.x)/scale;
@@ -565,13 +565,13 @@ public class SubsamplingScaleImageView extends View {
             }
 
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
                 performClick();
                 return true;
             }
 
             @Override
-            public boolean onDoubleTap(MotionEvent e) {
+            public boolean onDoubleTap(@NonNull MotionEvent e) {
                 if (zoomEnabled && readySent && vTranslate != null) {
                     // Hacky solution for #15 - after a double tap the GestureDetector gets in a state
                     // where the next fling is ignored, so here we replace it with a new one.
@@ -603,7 +603,7 @@ public class SubsamplingScaleImageView extends View {
 
         singleDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
                 performClick();
                 return true;
             }
@@ -971,7 +971,7 @@ public class SubsamplingScaleImageView extends View {
      * the scaling and tiling required. Once the view is setup, tiles are displayed as they are loaded.
      */
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         createPaints();
 
@@ -1629,6 +1629,7 @@ public class SubsamplingScaleImageView extends View {
 
     /**
      * Async task used to load images without blocking the UI thread.
+     * @noinspection deprecation
      */
     private static class TileLoadTask extends AsyncTask<Void, Void, Bitmap> {
         private final WeakReference<SubsamplingScaleImageView> viewRef;

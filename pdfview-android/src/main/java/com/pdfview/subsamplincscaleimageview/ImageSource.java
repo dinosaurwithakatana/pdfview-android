@@ -227,35 +227,35 @@ public final class ImageSource {
         }
     }
 
-    protected final Uri getUri() {
+    protected Uri getUri() {
         return uri;
     }
 
-    protected final Bitmap getBitmap() {
+    protected Bitmap getBitmap() {
         return bitmap;
     }
 
-    protected final Integer getResource() {
+    protected Integer getResource() {
         return resource;
     }
 
-    protected final boolean getTile() {
+    protected boolean getTile() {
         return tile;
     }
 
-    protected final int getSWidth() {
+    protected int getSWidth() {
         return sWidth;
     }
 
-    protected final int getSHeight() {
+    protected int getSHeight() {
         return sHeight;
     }
 
-    protected final Rect getSRegion() {
+    protected Rect getSRegion() {
         return sRegion;
     }
 
-    protected final boolean isCached() {
+    protected boolean isCached() {
         return cached;
     }
 }

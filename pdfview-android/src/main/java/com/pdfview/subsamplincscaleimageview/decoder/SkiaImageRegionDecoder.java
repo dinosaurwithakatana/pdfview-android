@@ -11,7 +11,7 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.Build;
+
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -158,10 +158,6 @@ public class SkiaImageRegionDecoder implements ImageRegionDecoder {
      * use the write lock to enforce single threaded decoding.
      */
     private Lock getDecodeLock() {
-        if (Build.VERSION.SDK_INT < 21) {
-            return decoderLock.writeLock();
-        } else {
-            return decoderLock.readLock();
-        }
+        return decoderLock.readLock();
     }
 }
