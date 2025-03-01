@@ -1,15 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-//apply from: "$rootDir/maven-scripts/info.gradle"
 
-//  to upload to bintray use ./gradlew build bintrayUpload
 android {
     namespace 'com.pdfview.pdf'
-    compileSdkVersion versions.compileSdk
+    compileSdk versions.compileSdk
 
     defaultConfig {
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
     }
 
     compileOptions {

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val view = findViewById<PDFView>(R.id.activity_main_pdf_view)
-        view.setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_OUTSIDE)
+        view.setPanLimit(SubsamplingScaleImageView.PAN_LIMIT_INSIDE)
         //view.setDebug(true)
 
         // Place some pdf files to /storage/emulated/0/Android/data/com.pdfview_sample.sample/files

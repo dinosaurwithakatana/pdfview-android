@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 
 android {
     namespace 'com.pdfview_sample.pdfview'
-    compileSdkVersion 32
+    compileSdk 35
     defaultConfig {
         applicationId "com.pdfview_sample.sample"
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdk 24
+        targetSdk 35
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -32,11 +32,10 @@ android {
 
 dependencies {
     implementation 'com.dmitryborodin:pdfview-android:1.1.0'
-//    implementation project(':pdfview-android')
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
