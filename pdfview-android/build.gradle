@@ -24,5 +24,3 @@ android {
 dependencies {
     implementation 'androidx.annotation:annotation:1.9.1'
 }
-
-//apply from: "$rootDir/maven-scripts/publish-module.gradle"
