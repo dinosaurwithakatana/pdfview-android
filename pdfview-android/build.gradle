@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply from: "$rootDir/maven-scripts/info.gradle"
+//apply from: "$rootDir/maven-scripts/info.gradle"
 
 //  to upload to bintray use ./gradlew build bintrayUpload
 android {
+    namespace 'com.pdfview.pdf'
     compileSdkVersion versions.compileSdk
 
     defaultConfig {
@@ -27,4 +28,4 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.3.0'
 }
 
-apply from: "$rootDir/maven-scripts/publish-module.gradle"
+//apply from: "$rootDir/maven-scripts/publish-module.gradle"

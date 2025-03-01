@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'com.pdfview_network_sample.pdfview'
     compileSdkVersion 32
     defaultConfig {
         applicationId "com.pdfview_sample.sample"
