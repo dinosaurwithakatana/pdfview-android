@@ -10,7 +10,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
 /**
- * Helper class used to set the source and additional attributes from a variety of sources. Supports
+ * Helper clazz used to set the source and additional attributes from a variety of sources. Supports
  * use of a bitmap, asset, resource, external file or any other URI.
  *
  * When you are using a preview image, you must set the dimensions of the full size image on the

@@ -2343,14 +2343,14 @@ public class SubsamplingScaleImageView extends View {
     /**
      *
      * Swap the default region decoder implementation for one of your own. You must do this before setting the image file or
-     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your class must have a
+     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your clazz must have a
      * public default constructor.
      * @param regionDecoderClass The {@link ImageRegionDecoder} implementation to use.
      */
     public final void setRegionDecoderClass(@NonNull Class<? extends ImageRegionDecoder> regionDecoderClass) {
         //noinspection ConstantConditions
         if (regionDecoderClass == null) {
-            throw new IllegalArgumentException("Decoder class cannot be set to null");
+            throw new IllegalArgumentException("Decoder clazz cannot be set to null");
         }
         this.regionDecoderFactory = new CompatDecoderFactory<>(regionDecoderClass);
     }
@@ -2371,14 +2371,14 @@ public class SubsamplingScaleImageView extends View {
 
     /**
      * Swap the default bitmap decoder implementation for one of your own. You must do this before setting the image file or
-     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your class must have a
+     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your clazz must have a
      * public default constructor.
      * @param bitmapDecoderClass The {@link ImageDecoder} implementation to use.
      */
     public final void setBitmapDecoderClass(@NonNull Class<? extends ImageDecoder> bitmapDecoderClass) {
         //noinspection ConstantConditions
         if (bitmapDecoderClass == null) {
-            throw new IllegalArgumentException("Decoder class cannot be set to null");
+            throw new IllegalArgumentException("Decoder clazz cannot be set to null");
         }
         this.bitmapDecoderFactory = new CompatDecoderFactory<>(bitmapDecoderClass);
     }
@@ -2596,7 +2596,7 @@ public class SubsamplingScaleImageView extends View {
     /**
      * Called once when the view is initialised, has dimensions, and will display an image on the
      * next draw. This is triggered at the same time as {@link OnImageEventListener#onReady()} but
-     * allows a subclass to receive this event without using a listener.
+     * allows a subclazz to receive this event without using a listener.
      */
     @SuppressWarnings("EmptyMethod")
     protected void onReady() {
@@ -2927,7 +2927,7 @@ public class SubsamplingScaleImageView extends View {
     }
 
     /**
-     * Builder class used to set additional options for a scale animation. Create an instance using {@link #animateScale(float)},
+     * Builder clazz used to set additional options for a scale animation. Create an instance using {@link #animateScale(float)},
      * then set your options and call {@link #start()}.
      */
     public final class AnimationBuilder {
@@ -3135,7 +3135,7 @@ public class SubsamplingScaleImageView extends View {
          * Called when the dimensions of the image and view are known, and either a preview image,
          * the full size image, or base layer tiles are loaded. This indicates the scale and translate
          * are known and the next draw will display an image. This event can be used to hide a loading
-         * graphic, or inform a subclass that it is safe to draw overlays.
+         * graphic, or inform a subclazz that it is safe to draw overlays.
          */
         void onReady();
 
