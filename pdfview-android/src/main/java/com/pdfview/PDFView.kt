@@ -2,6 +2,7 @@ package com.pdfview
 
 import android.content.Context
 import android.graphics.Color
+import android.net.Uri
 import android.util.AttributeSet
 import androidx.annotation.ColorInt
 import com.pdfview.pdf.R
@@ -12,7 +13,9 @@ import java.io.File
 class PDFView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
     SubsamplingScaleImageView(context, attrs) {
 
-    private var mfile: File? = null
+    private var pdfFile: File? = null
+    private var password: String? = null
+
     private var mScale: Float = 8f
     private var pageSpacing: Int = 0
 
@@ -32,17 +35,27 @@ class PDFView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
     }
 
     fun fromAsset(assetFileName: String): PDFView {
-        mfile = FileUtils.fileFromAsset(context, assetFileName)
+        pdfFile = FileUtils.fileFromAsset(context, assetFileName)
         return this
     }
 
     fun fromFile(file: File): PDFView {
-        mfile = file
+        pdfFile = file
+        return this
+    }
+
+    fun fromUri(uri: Uri): PDFView {
+        pdfFile = FileUtils.fileFromUri(context, uri)
         return this
     }
 
     fun fromFile(filePath: String): PDFView {
-        mfile = File(filePath)
+        pdfFile = File(filePath)
+        return this
+    }
+
+    fun password(password: String?): PDFView {
+        this.password = password
         return this
     }
 
@@ -51,18 +64,21 @@ class PDFView @JvmOverloads constructor(context: Context, attrs: AttributeSet? =
         return this
     }
 
-    fun show() {
-        val source = ImageSource.uri(mfile!!.path)
+    fun show(): Boolean {
+        val pdfFile = pdfFile ?: return false;
+        val source: ImageSource = ImageSource.uri(pdfFile.path)
+
         setRegionDecoderFactory {
             PDFRegionDecoder(
-                    view = this,
-                    file = mfile!!,
-                    scale = mScale,
-                    pageSpacing = pageSpacing,
-                    backgroundColorPdf = spacingColor
+                view = this,
+                file = pdfFile,
+                scale = mScale,
+                pageSpacing = pageSpacing,
+                backgroundColorPdf = spacingColor
             )
         }
         setImage(source)
+        return true;
     }
 
     override fun onDetachedFromWindow() {
