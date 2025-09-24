@@ -45,13 +45,13 @@ import static android.content.Context.ACTIVITY_SERVICE;
  * enabled in the view by calling {@link SubsamplingScaleImageView#setExecutor(Executor)}
  * with a multi-threaded {@link Executor} instance.
  * </p><p>
- * One decoder is initialised when the class is initialised. This is enough to decode base layer tiles.
+ * One decoder is initialised when the clazz is initialised. This is enough to decode base layer tiles.
  * Additional decoders are initialised when a subregion of the image is first requested, which indicates
  * interaction with the view. Creation of additional encoders stops when {@link #allowAdditionalDecoder(int, long)}
  * returns false. The default implementation takes into account the file size, number of CPU cores,
- * low memory status and a hard limit of 4. Extend this class to customise this.
+ * low memory status and a hard limit of 4. Extend this clazz to customise this.
  * </p><p>
- * <b>WARNING:</b> This class is highly experimental and not proven to be stable on a wide range of
+ * <b>WARNING:</b> This clazz is highly experimental and not proven to be stable on a wide range of
  * devices. You are advised to test it thoroughly on all available devices, and code your app to use
  * {@link SkiaImageRegionDecoder} on old or low powered devices you could not test.
  * </p>

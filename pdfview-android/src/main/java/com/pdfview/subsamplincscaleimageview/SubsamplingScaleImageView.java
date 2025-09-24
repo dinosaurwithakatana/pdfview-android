@@ -294,7 +294,7 @@ public class SubsamplingScaleImageView extends View {
         setMinimumTileDpi(320);
         setGestureDetector(context);
         this.handler = new Handler(new Handler.Callback() {
-            public boolean handleMessage(Message message) {
+            public boolean handleMessage(@NonNull Message message) {
                 if (message.what == MESSAGE_LONG_CLICK && onLongClickListener != null) {
                     maxTouchCount = 0;
                     SubsamplingScaleImageView.super.setOnLongClickListener(onLongClickListener);
@@ -553,7 +553,7 @@ public class SubsamplingScaleImageView extends View {
         this.detector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
 
             @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            public boolean onFling(MotionEvent e1, @NonNull MotionEvent e2, float velocityX, float velocityY) {
                 if (panEnabled && readySent && vTranslate != null && e1 != null && e2 != null && (Math.abs(e1.getX() - e2.getX()) > 50 || Math.abs(e1.getY() - e2.getY()) > 50) && (Math.abs(velocityX) > 500 || Math.abs(velocityY) > 500) && !isZooming) {
                     PointF vTranslateEnd = new PointF(vTranslate.x + (velocityX * 0.25f), vTranslate.y + (velocityY * 0.25f));
                     float sCenterXEnd = ((getWidth()/2) - vTranslateEnd.x)/scale;
@@ -565,13 +565,13 @@ public class SubsamplingScaleImageView extends View {
             }
 
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
                 performClick();
                 return true;
             }
 
             @Override
-            public boolean onDoubleTap(MotionEvent e) {
+            public boolean onDoubleTap(@NonNull MotionEvent e) {
                 if (zoomEnabled && readySent && vTranslate != null) {
                     // Hacky solution for #15 - after a double tap the GestureDetector gets in a state
                     // where the next fling is ignored, so here we replace it with a new one.
@@ -603,7 +603,7 @@ public class SubsamplingScaleImageView extends View {
 
         singleDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
             @Override
-            public boolean onSingleTapConfirmed(MotionEvent e) {
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
                 performClick();
                 return true;
             }
@@ -971,7 +971,7 @@ public class SubsamplingScaleImageView extends View {
      * the scaling and tiling required. Once the view is setup, tiles are displayed as they are loaded.
      */
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
         createPaints();
 
@@ -1629,6 +1629,7 @@ public class SubsamplingScaleImageView extends View {
 
     /**
      * Async task used to load images without blocking the UI thread.
+     * @noinspection deprecation
      */
     private static class TileLoadTask extends AsyncTask<Void, Void, Bitmap> {
         private final WeakReference<SubsamplingScaleImageView> viewRef;
@@ -2342,14 +2343,14 @@ public class SubsamplingScaleImageView extends View {
     /**
      *
      * Swap the default region decoder implementation for one of your own. You must do this before setting the image file or
-     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your class must have a
+     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your clazz must have a
      * public default constructor.
      * @param regionDecoderClass The {@link ImageRegionDecoder} implementation to use.
      */
     public final void setRegionDecoderClass(@NonNull Class<? extends ImageRegionDecoder> regionDecoderClass) {
         //noinspection ConstantConditions
         if (regionDecoderClass == null) {
-            throw new IllegalArgumentException("Decoder class cannot be set to null");
+            throw new IllegalArgumentException("Decoder clazz cannot be set to null");
         }
         this.regionDecoderFactory = new CompatDecoderFactory<>(regionDecoderClass);
     }
@@ -2370,14 +2371,14 @@ public class SubsamplingScaleImageView extends View {
 
     /**
      * Swap the default bitmap decoder implementation for one of your own. You must do this before setting the image file or
-     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your class must have a
+     * asset, and you cannot use a custom decoder when using layout XML to set an asset name. Your clazz must have a
      * public default constructor.
      * @param bitmapDecoderClass The {@link ImageDecoder} implementation to use.
      */
     public final void setBitmapDecoderClass(@NonNull Class<? extends ImageDecoder> bitmapDecoderClass) {
         //noinspection ConstantConditions
         if (bitmapDecoderClass == null) {
-            throw new IllegalArgumentException("Decoder class cannot be set to null");
+            throw new IllegalArgumentException("Decoder clazz cannot be set to null");
         }
         this.bitmapDecoderFactory = new CompatDecoderFactory<>(bitmapDecoderClass);
     }
@@ -2595,7 +2596,7 @@ public class SubsamplingScaleImageView extends View {
     /**
      * Called once when the view is initialised, has dimensions, and will display an image on the
      * next draw. This is triggered at the same time as {@link OnImageEventListener#onReady()} but
-     * allows a subclass to receive this event without using a listener.
+     * allows a subclazz to receive this event without using a listener.
      */
     @SuppressWarnings("EmptyMethod")
     protected void onReady() {
@@ -2926,7 +2927,7 @@ public class SubsamplingScaleImageView extends View {
     }
 
     /**
-     * Builder class used to set additional options for a scale animation. Create an instance using {@link #animateScale(float)},
+     * Builder clazz used to set additional options for a scale animation. Create an instance using {@link #animateScale(float)},
      * then set your options and call {@link #start()}.
      */
     public final class AnimationBuilder {
@@ -3134,7 +3135,7 @@ public class SubsamplingScaleImageView extends View {
          * Called when the dimensions of the image and view are known, and either a preview image,
          * the full size image, or base layer tiles are loaded. This indicates the scale and translate
          * are known and the next draw will display an image. This event can be used to hide a loading
-         * graphic, or inform a subclass that it is safe to draw overlays.
+         * graphic, or inform a subclazz that it is safe to draw overlays.
          */
         void onReady();
 
