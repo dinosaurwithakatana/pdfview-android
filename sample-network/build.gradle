@@ -33,7 +33,7 @@ dependencies {
     implementation project(':pdfview-android')
     implementation 'androidx.appcompat:appcompat:1.7.0'
     //this provides toUri(), by viewModel and other extensions
-    implementation "androidx.fragment:fragment-ktx:1.8.6"
+    implementation "androidx.fragment:fragment-ktx:1.8.9"
 
     implementation 'com.squareup.okhttp3:okhttp:4.12.0'
 }
